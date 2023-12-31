@@ -5,7 +5,11 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: #5F5F68;
+  --background-progress: #02ff83;
+  --background-progress-empty: rgba(100, 213, 159, 0.2);
+  --text-color-gray: #5f5f68;
+  --text-color-green-100: #0A2742
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,4 +28,51 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+    font-family: Scandia;
 }
+
+.bg-progress {
+  background-color: var(--background-progress);
+}
+.bg-progress-empty {
+  background-color: var(--background-progress-empty);
+}
+.progress-text {
+  color: var(--text-color-gray);
+  top: -38px;
+}
+
+.br-5 {
+  border-radius: 5px;
+}
+
+.box-shadow-item{
+  box-shadow: -3px 5px 40px -7px rgba(0,0,0,.3);
+}
+.text-gr-100 {
+  color: var(--text-color-green-100);
+  
+}
+.image-item{
+  padding-left: 38.75px;
+  padding-right: 38.75px
+}
+
+.leading-md-custom{
+  line-height: 22px;
+}
+.m-small{
+  margin-left: 3px;
+}
+.leading-lg-custom{
+  line-height: 44px;
+}
+.leading-mda-custom{
+  line-height: 18.4px;
+}
+
+
+.mt-md-custom{
+  margin-top: 26px;
+}
+

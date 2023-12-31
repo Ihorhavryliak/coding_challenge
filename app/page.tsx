@@ -1,113 +1,177 @@
-import Image from 'next/image'
+"use client";
+import { useState, useRef } from "react";
+import SliderGeneral from "./components/Slider/SliderGeneral";
+import TypeRoof from "./components/TypeRoofItem/TypeRoofItem";
+import FlatRoof from "./components/Icons/FlatRoof";
+import GableRoof from "./components/Icons/GableRoof";
+import PentRoof from "./components/Icons/PentRoof";
+import Other from "./components/Icons/Other";
+import "./globals.css";
+import ButtonBackIcon from "./components/Buttons/ButtonBackIcon";
+import HouseFirsVariant from "./components/Icons/HouseFirsVariant";
+import House from "./components/Icons/House";
 
 export default function Home() {
+  const [number, setNumber] = useState(10);
+  const [current, setCurrent] = useState(0);
+  const step = 40;
+  const duration = 500;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const previousSlide = () => {
+    if (current === 0) setCurrent(slides.length - 1);
+    else setCurrent((prev) => prev - 1);
+    setNumber((prev) => prev - step);
+    // Scroll to the previous slide with a slow transition
+    if (containerRef.current) {
+      const scrollAmount = -containerRef.current.clientWidth;
+      smoothScroll(containerRef.current, scrollAmount, duration);
+    }
+  };
+
+  const nextSlide = () => {
+    if (current === slides.length - 1) setCurrent(0);
+    else setCurrent((prev) => prev + 1);
+    setNumber((prev) => prev + step);
+    // Scroll to the next slide with a slow transition
+    if (containerRef.current) {
+      const scrollAmount = containerRef.current.clientWidth;
+      smoothScroll(containerRef.current, scrollAmount, duration);
+    }
+  };
+
+  // Function for smooth scrolling
+  const smoothScroll = (
+    element: HTMLElement,
+    scrollAmount: number,
+    duration: number
+  ) => {
+    const startTime = performance.now();
+    const startScrollLeft = element.scrollLeft;
+
+    const scroll = (currentTime: number) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+
+      element.scrollLeft = startScrollLeft + progress * scrollAmount;
+
+      if (progress < 1) {
+        requestAnimationFrame(scroll);
+      }
+    };
+    requestAnimationFrame(scroll);
+  };
+
+  const slides = [
+    <div key={1}>
+      <div
+        className={"mt-5 text-xl font-medium leading-md-custom pb-5"}
+        style={{ color: "#0A2742" }}
+      >
+        Kostenloser Solarstrom-Check in einer Minute.
+      </div>
+      <div className="flex justify-center px-10 gap-5">
+        <TypeRoof
+          onClick={nextSlide}
+          name={"Satteldach"}
+          icon={<GableRoof />}
+        />
+        <TypeRoof onClick={nextSlide} name={"Flachdach"} icon={<FlatRoof />} />
+        <TypeRoof onClick={nextSlide} name={"Pultdach"} icon={<PentRoof />} />
+        <TypeRoof onClick={nextSlide} name={"Anderes"} icon={<Other />} />
+      </div>
+    </div>,
+    <div key={2}>
+      <div
+        className={"mt-5 text-xl font-medium leading-md-custom pb-5"}
+        style={{ color: "#0A2742" }}
+      >
+        Besitzt Ihr Haus Gauben oder Dachfenster?
+      </div>
+      <div key={1} className="flex justify-center px-10 gap-5">
+        <TypeRoof name={"Ja"} icon={<HouseFirsVariant />} />
+        <TypeRoof name={"Nein"} icon={<House />} />
+        <TypeRoof name={"Weiß nicht"} icon={<Other />} />
+      </div>
+      <div className="px-4 py-2.5 ml-12 mt-6">
+        <ButtonBackIcon onClick={previousSlide} />
+      </div>
+    </div>,
+  ];
+
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+        <div className="w-full">
+          <div>
+            <div>
+              {/* progress */}
+              <div className="h-3">
+                <div className=" bg-stroke bg-progress-empty relative w-full rounded-[8px] h-1">
+                  <span
+                    className="transition-all ease-out duration-500 relative -ml-8   -top-6 bottom-full text-xs progress-text h-1 leading-5 font-medium"
+                    style={{ left: `${number}%` }}
+                  >
+                    {number} % geschafft
+                  </span>
+                  <div
+                    className="transition-all ease-out duration-500 bg-progress absolute top-0 left-0 h-full rounded-[8px]"
+                    style={{ width: `${number}%` }}
+                  >
+                    <span className=" absolute -right-4 bottom-full -mb-3 rounded-sm  text-sm text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="21"
+                        height="20"
+                        viewBox="0 0 21 20"
+                        fill="none"
+                      >
+                        <g clipPath="url(#clip0_1_14)">
+                          <path
+                            d="M10.4146 20.0146C15.9374 20.0146 20.4146 15.5374 20.4146 10.0146C20.4146 4.49171 15.9374 0.0145569 10.4146 0.0145569C4.8917 0.0145569 0.414551 4.49171 0.414551 10.0146C0.414551 15.5374 4.8917 20.0146 10.4146 20.0146Z"
+                            fill="#02FF83"
+                          />
+                          <path
+                            d="M14.1418 7.01456L8.86907 12.2873L6.50543 9.92365"
+                            stroke="black"
+                            strokeWidth="1.81818"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_1_14">
+                            <rect
+                              width="20"
+                              height="20"
+                              fill="white"
+                              transform="translate(0.400024)"
+                            />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </span>
+                  </div>
+                </div>{" "}
+              </div>
+              {/* text */}
+
+              {/* second text */}
+              <p
+                className={
+                  "col-span-10 text-sm font-medium leading-mda-custom mb-2 mt-md-custom"
+                }
+                style={{ color: "#5F5F68" }}
+              >
+                Welche Dachform hat Ihr Haus?
+              </p>
+              {/* list chose */}
+              <SliderGeneral slides={slides} ref={containerRef} />
+              <div></div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
+  );
 }
