@@ -9,7 +9,6 @@
   --background-progress: #02ff83;
   --background-progress-empty: rgba(100, 213, 159, 0.2);
   --text-color-gray: #5f5f68;
-  --text-color-green-100: #0A2742
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,12 +21,12 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+/*   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-start-rgb)); */
     font-family: Scandia;
 }
 
@@ -49,10 +48,9 @@ body {
 .box-shadow-item{
   box-shadow: -3px 5px 40px -7px rgba(0,0,0,.3);
 }
-.text-gr-100 {
-  color: var(--text-color-green-100);
-  
-}
+/* .text-gr-100 {
+  color: var(--text-color-blue-100);
+} */
 .image-item{
   padding-left: 38.75px;
   padding-right: 38.75px
@@ -75,4 +73,3 @@ body {
 .mt-md-custom{
   margin-top: 26px;
 }
-
