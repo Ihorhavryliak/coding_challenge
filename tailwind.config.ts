@@ -19,12 +19,15 @@ const config: Config = {
           'blue-200': '#000D19',
           'gray-100': '#5F5F68',
           'gray-200': '#F1F1F2',
+          'gray-300': '#333',
+          'gray-400': '#BDC5CD',
+          'gray-500': '#4E4E4E',
+          
         }
       },
       fontFamily: {
         scandia: ['Scandia', 'sans-serif'],
       },
-      
     },
   },
   plugins: [],
