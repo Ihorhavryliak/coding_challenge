@@ -1,6 +1,6 @@
 # Third party
 **/node_modules
-
+.next/
 # Not written by hand
 packages/react-art/npm/lib
 
