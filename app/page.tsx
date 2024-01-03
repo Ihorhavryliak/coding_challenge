@@ -9,6 +9,11 @@ import StepContainer from './components/StepContainer/StepContainer';
 import Progress from './components/Progress/Progress';
 import TypeRoofTextContainer from './components/TypeRoofTextContainer/TypeRoofTextContainer';
 import { useProgress } from './hooks/useProgress';
+import ButtonGeneral from './components/Buttons/ButtonGeneral';
+import useForm from './hooks/useForm';
+import InputRadio from './components/Inputs/InputRadio';
+import InputGeneral from './components/Inputs/InputGeneral';
+import SelectGeneral from './components/Select/SelectGeneral';
 
 export default function Home() {
   const {
@@ -18,6 +23,7 @@ export default function Home() {
     numberPercentLoad,
     containerRef,
     step,
+    nextStepSlider
   } = useProgress();
   const roofShapesData = useRoofShape({ nextSlide, dataSend });
   const skyLightData = useSkyLight({ nextSlide, dataSend });
@@ -27,6 +33,7 @@ export default function Home() {
       isCurrentStep={step === 0}
       key={1}
       roofShapesData={roofShapesData}
+      nextStepSlider={nextStepSlider}
     />,
     <StepContainer
       title='Besitzt Ihr Haus Gauben oder Dachfenster?'
@@ -35,6 +42,7 @@ export default function Home() {
       roofShapesData={skyLightData}
       isButton={true}
       previousSlide={previousSlide}
+      nextStepSlider={nextStepSlider}
     />,
     <div
       key={3}
@@ -43,6 +51,7 @@ export default function Home() {
       } transition-all duration-300 `}
     ></div>,
   ];
+  const { formData, isButtonSendDisabled } = useForm();
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between '>
@@ -76,98 +85,120 @@ export default function Home() {
                       zu.
                     </p>
                   </div>
+
                   {/* input radio */}
                   <div className='flex justify-center'>
                     <div className='w-[430px] py-2.5'>
-                      <div className='mt-[9.91px] font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
-                        Anrede
-                      </div>
-                      <div>
-                        <div className='flex gap-[38px]'>
-                          <div className='flex items-center'>
-                            <div className='flex  w-6 items-center'>
-                              <input
-                                className='h-[18px] w-[18px]'
-                                type='radio'
-                              />
+                      {formData.map((item) => {
+                        if (item.type === 'radio') {
+                          return (
+                            <div key={item.id}>
+                              <div className='mt-[9.91px] font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
+                                {item.name} <span>{item.error}</span>
+                              </div>
+                              <div>
+                                <div className='flex gap-[38px]'>
+                                  {item.radio?.map(
+                                    ({
+                                      name,
+                                      id,
+                                      onChange,
+                                      value,
+                                      checked,
+                                    }) => {
+                                      return (
+                                        <InputRadio
+                                          key={id}
+                                          name={name}
+                                          onChange={onChange}
+                                          value={value}
+                                          checked={checked}
+                                        />
+                                      );
+                                    },
+                                  )}
+                                </div>
+                              </div>
                             </div>
-                            <div className='text-custom-gray-300 flex items-center font-scandia text-lg leading-5'>
-                              Herr
+                          );
+                        }
+                        if (item.type === 'double') {
+                          return (
+                            <div key={item.id} className='flex gap-2.5'>
+                              {item?.inputs?.map(
+                                ({
+                                  error,
+                                  id,
+                                  name,
+                                  onChange,
+                                  type,
+                                  value,
+                                  marginTop,
+                                  onBlur,
+                                  width,
+                                  placeholder,
+                                  disabled
+                                }) => {
+                                  return (
+                                    <InputGeneral
+                                      error={error}
+                                      key={id}
+                                      type={type}
+                                      name={name}
+                                      onChange={onChange}
+                                      onBlur={onBlur}
+                                      value={value || ''}
+                                      marginTop={marginTop}
+                                      width={width}
+                                      placeholder={placeholder}
+                                      disabled={disabled}
+                                    />
+                                  );
+                                },
+                              )}
                             </div>
-                          </div>
-
-                          <div className='flex items-center'>
-                            <div className='flex  w-6 items-center'>
-                              <input
-                                className='h-[18px] w-[18px]'
-                                type='radio'
-                              />
-                            </div>
-                            <div className='text-custom-gray-300 flex items-center font-scandia text-lg leading-5'>
-                              Frau
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* input  */}
-                      <div>
-                        <div className='mt-[12.09px] font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
-                          Name
-                        </div>
-                        <input
-                          type='text'
-                          className='border-custom-gray-400 text-custom-gray-500 block h-[46px] w-full rounded-lg border py-1.5 pe-1.5 ps-4 font-scandia text-xl outline-none
-                  '
-                        />
-                      </div>
-                      {/*  Telefonnummer */}
-                      <div className='mt-[10.09px]'>
-                        <div className='font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
-                          Telefonnummer
-                        </div>
-                        <input
-                          type='number'
-                          className='border-custom-gray-400 text-custom-gray-500 block h-[46px] w-full appearance-none rounded-lg border py-1.5 pe-1.5 ps-4 font-scandia text-xl outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
-                  '
-                        />
-                      </div>
-
-                      {/*  Postleitzahl */}
-                      <div className='mt-[11.59px]'>
-                        <div className='font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
-                          Postleitzahl
-                        </div>
-                        <input
-                          type='number'
-                          className=' border-custom-gray-400 text-custom-gray-500 block h-[46px] w-full rounded-lg border py-1.5 pe-1.5 ps-4 font-scandia text-xl outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
-                  '
-                        />
-                      </div>
-                      <div className='flex gap-2.5'>
-                        {/*  Postleitzahl */}
-                        <div className='mt-[10.09px]'>
-                          <div className='font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
-                            Ort
-                          </div>
-                          <input
-                            type='number'
-                            className=' border-custom-gray-400 text-custom-gray-500 block h-[46px] w-full rounded-lg border py-1.5 pe-1.5 ps-4 font-scandia text-xl outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
-                  '
+                          );
+                        }
+                        if (item.type === 'select') {
+                          return (
+                            <SelectGeneral
+                              key={item.id}
+                              name={item.name || ''}
+                              onChange={item.onChange as (val: string) => void}
+                              value={item.value || ''}
+                              marginTop={item.marginTop}
+                              error={item.error}
+                              onBlur={item.onBlur as (val: string) => void}
+                              options={item?.options as [] || []}
+                              placeholder={item.placeholder}
+                              disabled={item.disabled}
+                            />
+                          );
+                        }
+                       
+                        return (
+                          <InputGeneral
+                            type={item.type}
+                            key={item.id}
+                            name={item.name || ''}
+                            onChange={item.onChange as (val: string) => void}
+                            value={item.value || ''}
+                            marginTop={item.marginTop}
+                            error={item.error}
+                            onBlur={item.onBlur as (val: string) => void}
+                            placeholder={item.placeholder}
+                            disabled={item.disabled}
                           />
-                        </div>
+                        );
+                      })}
 
-                        {/*  Postleitzahl */}
-                        <div className='mt-[11.09px]'>
-                          <div className='font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
-                            Straße
-                          </div>
-                          <input
-                            type='number'
-                            className=' border-custom-gray-400 text-custom-gray-500 block h-[46px] w-full rounded-lg border py-1.5 pe-1.5 ps-4 font-scandia text-xl outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none
-                  '
-                          />
-                        </div>
+                      {/* button */}
+                      <div className='mt-[13.85px]'>
+                        <ButtonGeneral
+                          disabled={isButtonSendDisabled}
+                          title='Ja, das ist mein Hausdach.'
+                          onClick={() => {}}
+                        />
                       </div>
                     </div>
                   </div>
@@ -175,7 +206,7 @@ export default function Home() {
               )}
 
               <TypeRoofTextContainer />
-              <SliderGeneral slides={slides} ref={containerRef} />
+              <SliderGeneral  slides={slides} ref={containerRef} />
             </div>
           </div>
         </div>

@@ -37,7 +37,9 @@ export const useProgress = () => {
       smoothScroll(containerRef.current, scrollAmount, duration);
     }
   };
-
+  const nextStepSlider = () => {
+    setStep((prev) => prev + 1);
+  };
   // Function for smooth scrolling
   const smoothScroll = (
     element: HTMLElement,
@@ -60,5 +62,5 @@ export const useProgress = () => {
     requestAnimationFrame(scroll);
   };
 
-  return {previousSlide, nextSlide, dataSend, numberPercentLoad, containerRef, step}
+  return {previousSlide, nextSlide, dataSend, numberPercentLoad, containerRef, step, nextStepSlider}
 }

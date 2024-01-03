@@ -17,12 +17,17 @@ const config: Config = {
         custom: {
           'blue-100': '#0a2742',
           'blue-200': '#000D19',
+          'blue-300': '#4282fb',
           'gray-100': '#5F5F68',
           'gray-200': '#F1F1F2',
           'gray-300': '#333',
           'gray-400': '#BDC5CD',
           'gray-500': '#4E4E4E',
-          
+          'gray-600': '#E3E3E3',
+          'gray-700': '#e9ecef',
+          'brand-color-green': '#02FF83',
+          'color-neutral-900': '#171717',
+          'red-100': '#CD4218'
         }
       },
       fontFamily: {

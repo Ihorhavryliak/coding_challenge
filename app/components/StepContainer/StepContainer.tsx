@@ -2,6 +2,7 @@ import React from 'react';
 import TypeRoofContainer from '../TypeRoof/TypeRoofContainer';
 import { RoofShapeType } from '@/app/hooks/useRoofShape';
 import ButtonBackIcon from '../Buttons/ButtonBackIcon';
+import BlueButton from '../Buttons/BlueButtonIcon';
 
 type StepContainerType = {
   roofShapesData: RoofShapeType;
@@ -9,6 +10,7 @@ type StepContainerType = {
   title: string;
   previousSlide?: () => void;
   isButton?: boolean;
+  nextStepSlider: () => void;
 };
 
 const StepContainer = ({
@@ -17,6 +19,7 @@ const StepContainer = ({
   title,
   previousSlide,
   isButton,
+  nextStepSlider,
 }: StepContainerType) => {
   return (
     <div
@@ -45,10 +48,13 @@ const StepContainer = ({
           );
         })}
       </div>
-      <div className='ml-12 mt-6 px-4 py-2.5'>
+      <div className='ml-12 mt-6 py-2.5 pe-12  ps-4'>
         {isCurrentStep && isButton && previousSlide && (
           <ButtonBackIcon onClick={previousSlide} />
         )}
+        <div className='float-right'>
+          <BlueButton title='Weiter' onClick={nextStepSlider} />
+        </div>
       </div>
     </div>
   );
