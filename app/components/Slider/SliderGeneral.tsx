@@ -1,22 +1,26 @@
-import React, { LegacyRef, forwardRef } from "react";
+import React, { LegacyRef, forwardRef } from 'react';
+import TypeRoofTextContainer from '../TypeRoofTextContainer/TypeRoofTextContainer';
 
 type SliderGeneralType = {
   slides: JSX.Element[];
 };
 
-const SliderGeneral = ({ slides }: SliderGeneralType, ref: LegacyRef<HTMLDivElement> | undefined) => {
+const SliderGeneral = (
+  { slides }: SliderGeneralType,
+  ref: LegacyRef<HTMLDivElement> | undefined,
+) => {
   return (
-    <div className="relative overflow-hidden">
+    <div className='relative overflow-x-hidden'>
       <div
         ref={ref}
-        className="flex transition overflow-hidden"
+        className='flex overflow-hidden transition min-h-screen'
         style={{
-          scrollSnapType: "x mandatory",
+          scrollSnapType: 'x mandatory',
         }}
       >
-        {slides.map((text, index) => (
-          <div key={index} className="h-96 relative min-w-full flex-shrink-0">
-            {text}
+        {slides.map((item, index) => (
+          <div key={index} className='relative h-96 min-w-full flex-shrink-0'>
+            {item}
           </div>
         ))}
       </div>

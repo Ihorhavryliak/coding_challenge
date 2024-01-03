@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 export type DataSendType = {
   roofShape: string;
   skyLight: string;
@@ -8,6 +8,7 @@ export const useProgress = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [numberPercentLoad, setNumberPercentLoad] = useState(10);
   const [step, setStep] = useState(0);
+  const [stepRightOrBack, setStepRightOrBack] = useState('');
   const [dataSend, setDataSend] = useState({
     roofShape: '',
     skyLight: '',
@@ -16,29 +17,43 @@ export const useProgress = () => {
   const stepPercent = 40;
   const duration = 500;
   const previousSlide = () => {
+    setStepRightOrBack('back')
     setStep((prev) => prev - 1);
     setNumberPercentLoad((prev) => prev - stepPercent);
     // Scroll to the previous slide with a slow transition
-    if (containerRef.current) {
-      const scrollAmount = -containerRef.current.clientWidth;
-      smoothScroll(containerRef.current, scrollAmount, duration);
-    }
+    setTimeout(() => {
+      if (containerRef.current) {
+        const scrollAmount = -containerRef.current.clientWidth;
+        smoothScroll(containerRef?.current, scrollAmount, duration);
+      }
+    }, 200);
   };
 
   const nextSlide = (name: string, field: string) => {
+    setStepRightOrBack('right')
     setStep((prev) => prev + 1);
     setNumberPercentLoad((prev) => prev + stepPercent);
     setDataSend((prev) => {
       return { ...prev, [field]: name };
     });
     // Scroll to the next slide with a slow transition
-    if (containerRef.current) {
-      const scrollAmount = containerRef.current.clientWidth;
-      smoothScroll(containerRef.current, scrollAmount, duration);
-    }
+    setTimeout(() => {
+      if (containerRef.current) {
+        const scrollAmount = containerRef.current.clientWidth;
+        smoothScroll(containerRef?.current, scrollAmount, duration);
+      }
+    }, 200);
   };
   const nextStepSlider = () => {
+    setStepRightOrBack('right')
     setStep((prev) => prev + 1);
+    setNumberPercentLoad((prev) => prev + stepPercent);
+    setTimeout(() => {
+      if (containerRef.current) {
+        const scrollAmount = containerRef.current.clientWidth;
+        smoothScroll(containerRef?.current, scrollAmount, duration);
+      }
+    }, 200);
   };
   // Function for smooth scrolling
   const smoothScroll = (
@@ -62,5 +77,5 @@ export const useProgress = () => {
     requestAnimationFrame(scroll);
   };
 
-  return {previousSlide, nextSlide, dataSend, numberPercentLoad, containerRef, step, nextStepSlider}
+  return {previousSlide, nextSlide, dataSend, numberPercentLoad, containerRef, step, nextStepSlider, stepRightOrBack}
 }

@@ -11,6 +11,7 @@ type StepContainerType = {
   previousSlide?: () => void;
   isButton?: boolean;
   nextStepSlider: () => void;
+  isButtonNext?: boolean;
 };
 
 const StepContainer = ({
@@ -20,17 +21,18 @@ const StepContainer = ({
   previousSlide,
   isButton,
   nextStepSlider,
+  isButtonNext,
 }: StepContainerType) => {
   return (
     <div
       key={1}
       className={`${
-        isCurrentStep ? 'opacity-100' : 'opacity-50'
-      } transition-all duration-300 `}
+        isCurrentStep ? 'opacity-100' : 'opacity-40'
+      } transition-all duration-700 `}
     >
       <div
         className={
-          'leading-md-custom mt-5 pb-5 font-scandia text-xl font-medium text-custom-blue-100'
+          'mt-[7.89px] pb-5 font-scandia text-xl font-medium leading-[22px] text-custom-blue-100'
         }
       >
         {title}
@@ -48,12 +50,16 @@ const StepContainer = ({
           );
         })}
       </div>
-      <div className='ml-12 mt-6 py-2.5 pe-12  ps-4'>
-        {isCurrentStep && isButton && previousSlide && (
-          <ButtonBackIcon onClick={previousSlide} />
-        )}
+      <div className='ml-12 mt-6 flex items-center justify-between py-2.5 pe-12 ps-4'>
+        <div>
+          {isCurrentStep && isButton && previousSlide && (
+            <ButtonBackIcon onClick={previousSlide} />
+          )}
+        </div>
         <div className='float-right'>
-          <BlueButton title='Weiter' onClick={nextStepSlider} />
+          {isButtonNext && (
+            <BlueButton title='Weiter' onClick={nextStepSlider} />
+          )}
         </div>
       </div>
     </div>

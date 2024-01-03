@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import GableRoof from '../components/Icons/GableRoof';
-import { DataSendType } from '../page';
 import FlatRoof from '../components/Icons/FlatRoof';
 import PentRoof from '../components/Icons/PentRoof';
 import Other from '../components/Icons/Other';
+import { DataSendType } from './useProgress';
 
 type UseRoofShapeType = {
   nextSlide: (name: string, field: string) => void;

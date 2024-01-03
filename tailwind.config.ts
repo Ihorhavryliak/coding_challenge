@@ -26,6 +26,7 @@ const config: Config = {
           'gray-600': '#E3E3E3',
           'gray-700': '#e9ecef',
           'brand-color-green': '#02FF83',
+          'green-100': 'rgba(100, 213, 159, 0.2)',
           'color-neutral-900': '#171717',
           'red-100': '#CD4218'
         }
@@ -33,6 +34,9 @@ const config: Config = {
       fontFamily: {
         scandia: ['Scandia', 'sans-serif'],
       },
+      boxShadow: {
+        '3xl': '-3px 5px 40px -7px rgba(0,0,0,.3)',
+      }
     },
   },
   plugins: [],

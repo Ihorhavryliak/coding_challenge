@@ -4,94 +4,36 @@
 
 @font-face {
   font-family: "Scandia";
-  src: url("../public/fonts/Scandia-Regular.woff2");
+  src: url("../public/assets/fonts/Scandia-Regular.woff2");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Scandia";
-  src: url("../public/fonts/Scandia-Medium.woff2");
+  src: url("../public/assets/fonts/Scandia-Medium.woff2");
   font-weight: 500;
   font-style: normal;
 }
 
-
 @font-face {
   font-family: "Scandia";
-  src: url("../public/fonts/Scandia-Bold.woff");
+  src: url("../public/assets/fonts/Scandia-Medium.woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Scandia";
+  src: url("../public/assets/fonts/Scandia-Bold.woff");
   font-weight: 700;
   font-style: normal;
 }
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: #5F5F68;
-  --background-progress: #02ff83;
-  --background-progress-empty: rgba(100, 213, 159, 0.2);
-  --text-color-gray: #5f5f68;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-/*   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-
-}
-
-.bg-progress {
-  background-color: var(--background-progress);
-}
-.bg-progress-empty {
-  background-color: var(--background-progress-empty);
-}
-.progress-text {
-  color: var(--text-color-gray);
-  top: -38px;
-}
-
-.br-5 {
-  border-radius: 5px;
-}
-
-.box-shadow-item{
-  box-shadow: -3px 5px 40px -7px rgba(0,0,0,.3);
-}
-/* .text-gr-100 {
-  color: var(--text-color-blue-100);
-} */
-.image-item{
-  padding-left: 38.75px;
-  padding-right: 38.75px
-}
-
-.leading-md-custom{
-  line-height: 22px;
-}
-.m-small{
-  margin-left: 3px;
-}
-.leading-lg-custom{
-  line-height: 44px;
-}
-.leading-mda-custom{
-  line-height: 18.4px;
+* {
+  box-sizing: border-box;
 }
 
 
-.mt-md-custom{
-  margin-top: 26px;
-}
+
+
+
