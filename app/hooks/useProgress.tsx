@@ -1,22 +1,27 @@
 import { useCallback, useRef, useState } from 'react';
-export type DataSendType = {
+
+export type RoofDataType = {
   roofShape: string;
   skyLight: string;
 };
+
+const duration = 500;
+const back = 'back';
+const next = 'right';
+const delayDurationSelectCart = 200;
 
 export const useProgress = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [numberPercentLoad, setNumberPercentLoad] = useState(10);
   const [step, setStep] = useState(0);
   const [stepRightOrBack, setStepRightOrBack] = useState('');
-  const [dataSend, setDataSend] = useState({
+  const [roofData, setRoofData] = useState({
     roofShape: '',
     skyLight: '',
-  } as DataSendType);
+  } as RoofDataType);
 
-  const duration = 500;
   const previousSlide = useCallback((stepPercent: number) => {
-    setStepRightOrBack('back');
+    setStepRightOrBack(back);
     setStep((prev) => prev - 1);
     setNumberPercentLoad((prev) => prev - stepPercent);
     // Scroll to the previous slide with a slow transition
@@ -25,15 +30,15 @@ export const useProgress = () => {
         const scrollAmount = -containerRef.current.clientWidth;
         smoothScroll(containerRef?.current, scrollAmount, duration);
       }
-    }, 200);
+    }, delayDurationSelectCart);
   }, []);
 
   const nextSlide = useCallback(
     (name: string, field: string, stepPercent: number) => {
-      setStepRightOrBack('right');
+      setStepRightOrBack(next);
       setStep((prev) => prev + 1);
       setNumberPercentLoad((prev) => prev + stepPercent);
-      setDataSend((prev) => {
+      setRoofData((prev) => {
         return { ...prev, [field]: name };
       });
       // Scroll to the next slide with a slow transition
@@ -42,12 +47,12 @@ export const useProgress = () => {
           const scrollAmount = containerRef.current.clientWidth;
           smoothScroll(containerRef?.current, scrollAmount, duration);
         }
-      }, 200);
+      }, delayDurationSelectCart);
     },
     [],
   );
   const nextStepSlider = useCallback((stepPercent: number) => {
-    setStepRightOrBack('right');
+    setStepRightOrBack(next);
     setStep((prev) => prev + 1);
     setNumberPercentLoad((prev) => prev + stepPercent);
     setTimeout(() => {
@@ -55,7 +60,7 @@ export const useProgress = () => {
         const scrollAmount = containerRef.current.clientWidth;
         smoothScroll(containerRef?.current, scrollAmount, duration);
       }
-    }, 200);
+    }, delayDurationSelectCart);
   }, []);
   // Function for smooth scrolling
   const smoothScroll = (
@@ -82,7 +87,7 @@ export const useProgress = () => {
   return {
     previousSlide,
     nextSlide,
-    dataSend,
+    roofData,
     numberPercentLoad,
     containerRef,
     step,

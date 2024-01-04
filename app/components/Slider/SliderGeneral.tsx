@@ -20,7 +20,7 @@ const SliderGeneral = (
         {slides.map((item, index) => (
           <div
             key={index}
-            style={{ width: width <= 930 ? width  + 'px' : 930 + 'px' }}
+            style={{ width: width <= 930 ? width + 'px' : 930 + 'px' }}
           >
             {item}
           </div>

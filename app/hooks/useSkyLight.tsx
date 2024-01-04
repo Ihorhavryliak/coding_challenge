@@ -2,11 +2,11 @@ import React, { useMemo } from 'react';
 import Other from '../components/Icons/Other';
 import HouseFirsVariant from '../components/Icons/HouseFirsVariant';
 import House from '../components/Icons/House';
-import { DataSendType } from './useProgress';
+import { RoofDataType } from './useProgress';
 
 type UseRoofShapeType = {
   nextSlide: (name: string, field: string, stepNumber: number) => void;
-  dataSend: DataSendType;
+  roofData: RoofDataType;
 };
 
 export type RoofShapeType = {
@@ -18,7 +18,7 @@ export type RoofShapeType = {
 
 const useSkyLight = ({
   nextSlide,
-  dataSend,
+  roofData,
 }: UseRoofShapeType): RoofShapeType => {
   return useMemo(() => {
     const stepNumber = 45;
@@ -27,22 +27,22 @@ const useSkyLight = ({
         onClick: () => nextSlide('HouseFirsVariant', 'skyLight', stepNumber),
         name: 'Ja',
         icon: <HouseFirsVariant />,
-        isActive: dataSend.skyLight === 'HouseFirsVariant',
+        isActive: roofData.skyLight === 'HouseFirsVariant',
       },
       {
         onClick: () => nextSlide('Nein', 'skyLight', stepNumber),
         name: 'Nein',
         icon: <House />,
-        isActive: dataSend.skyLight === 'Nein',
+        isActive: roofData.skyLight === 'Nein',
       },
       {
         onClick: () => nextSlide('Weiß nicht', 'skyLight', stepNumber),
         name: 'Weiß nicht',
         icon: <Other />,
-        isActive: dataSend.skyLight === 'Weiß nicht',
+        isActive: roofData.skyLight === 'Weiß nicht',
       },
     ];
-  }, [dataSend.skyLight, nextSlide]);
+  }, [roofData.skyLight, nextSlide]);
 };
 
 export default useSkyLight;

@@ -34,14 +34,14 @@ const SelectGeneral = ({
   const classError = !!error?.length
     ? 'border-custom-red-100'
     : !!value.length
-    ? 'border-custom-gray-400'
-    : 'border-custom-gray-600';
+      ? 'border-custom-gray-400'
+      : 'border-custom-gray-600';
 
   return (
     <div className={marginTop}>
       <div className='font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
         {name}{' '}
-        <span className='text-custom-red-100 text-[11.4px] font-medium leading-[19.2px]'>
+        <span className='text-[11.4px] font-medium leading-[19.2px] text-custom-red-100'>
           {error}
         </span>
       </div>

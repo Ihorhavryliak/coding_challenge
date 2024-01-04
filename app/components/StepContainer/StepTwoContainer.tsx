@@ -1,23 +1,25 @@
 import React from 'react';
-
 import TypeRoofTextContainer from '../TypeRoofTextContainer/TypeRoofTextContainer';
 import StepContainer from './StepContainer';
 import { RoofShapeType } from '@/app/hooks/useRoofShape';
-import { DataSendType } from '@/app/hooks/useProgress';
+import { RoofDataType } from '@/app/hooks/useProgress';
+
 type StepTwoContainerType = {
   step: number;
   skyLightData: RoofShapeType;
   previousSlide: () => void;
   nextStepSlider: () => void;
-  dataSend: DataSendType;
+  roofData: RoofDataType;
 };
+
 const StepTwoContainer = ({
   step,
   skyLightData,
   previousSlide,
-  dataSend,
+  roofData,
   nextStepSlider,
 }: StepTwoContainerType) => {
+  
   return (
     <>
       <TypeRoofTextContainer />
@@ -27,7 +29,7 @@ const StepTwoContainer = ({
         key={2}
         roofShapesData={skyLightData}
         isButton={true}
-        isButtonNext={!!dataSend.skyLight.length}
+        isButtonNext={!!roofData.skyLight.length}
         previousSlide={previousSlide}
         nextStepSlider={nextStepSlider}
       />

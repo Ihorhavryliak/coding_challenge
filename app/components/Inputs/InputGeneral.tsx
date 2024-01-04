@@ -36,7 +36,7 @@ const InputGeneral = ({
     <div className={marginTop}>
       <div className='font-scandia text-sm font-medium leading-5 text-custom-gray-100'>
         {name}{' '}
-        <span className='text-custom-red-100 text-[11.4px] font-medium leading-[19.2px]'>
+        <span className='text-[11.4px] font-medium leading-[19.2px] text-custom-red-100'>
           {error}
         </span>
       </div>
@@ -49,7 +49,7 @@ const InputGeneral = ({
         type={type}
         className={classNames(
           classError,
-          `${widthInput} disabled:bg-custom-gray-700 block h-[46px] rounded-lg border py-1.5 pe-1.5 ps-4 font-scandia text-xl text-custom-gray-500 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`,
+          `${widthInput} block h-[46px] rounded-lg border py-1.5 pe-1.5 ps-4 font-scandia text-xl text-custom-gray-500 [appearance:textfield] disabled:bg-custom-gray-700 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none`,
         )}
       />
     </div>

@@ -1,13 +1,13 @@
 import { RoofShapeType } from '@/app/hooks/useRoofShape';
 import TypeRoofTextContainer from '../TypeRoofTextContainer/TypeRoofTextContainer';
 import StepContainer from './StepContainer';
-import { DataSendType } from '@/app/hooks/useProgress';
+import { RoofDataType } from '@/app/hooks/useProgress';
 
- type StepOneContainerType = {
+type StepOneContainerType = {
   step: number;
   roofShapesData: RoofShapeType;
   nextStepSlider: () => void;
-  dataSend: DataSendType;
+  roofData: RoofDataType;
   stepRightOrBack: string;
 };
 
@@ -15,7 +15,7 @@ const StepOneContainer = ({
   step,
   roofShapesData,
   nextStepSlider,
-  dataSend,
+  roofData,
   stepRightOrBack,
 }: StepOneContainerType) => {
   return (
@@ -27,7 +27,7 @@ const StepOneContainer = ({
         key={1}
         roofShapesData={roofShapesData}
         nextStepSlider={nextStepSlider}
-        isButtonNext={!!dataSend.roofShape.length && stepRightOrBack === 'back'}
+        isButtonNext={!!roofData.roofShape.length && stepRightOrBack === 'back'}
       />
     </>
   );

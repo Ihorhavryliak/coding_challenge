@@ -20,10 +20,10 @@ const ButtonGeneral = ({
       onClick={onClick}
       className={classNames(
         classDisabled,
-        'bg-custom-brand-color-green w-full cursor-pointer rounded-[32px] pb-[17px] pt-[16.5px]',
+        'w-full cursor-pointer rounded-[32px] bg-custom-brand-color-green pb-[17px] pt-[16.5px]',
       )}
     >
-      <span className=' text-custom-color-neutral-900 h-[22.5px] font-scandia text-base font-medium'>
+      <span className=' h-[22.5px] font-scandia text-base font-medium text-custom-color-neutral-900'>
         {title}
       </span>
     </button>

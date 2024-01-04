@@ -13,15 +13,15 @@ export default function Home() {
   const {
     previousSlide,
     nextSlide,
-    dataSend,
+    roofData,
     numberPercentLoad,
     containerRef,
     step,
     nextStepSlider,
     stepRightOrBack,
   } = useProgress();
-  const roofShapesData = useRoofShape({ nextSlide, dataSend });
-  const skyLightData = useSkyLight({ nextSlide, dataSend });
+  const roofShapesData = useRoofShape({ nextSlide, roofData });
+  const skyLightData = useSkyLight({ nextSlide, roofData });
 
   return (
     <main className='m-auto w-full max-w-[930px]'>
@@ -42,19 +42,19 @@ export default function Home() {
               key={1}
               step={step}
               roofShapesData={roofShapesData}
-              nextStepSlider={()=>nextStepSlider(40)}
-              dataSend={dataSend}
+              nextStepSlider={() => nextStepSlider(40)}
+              roofData={roofData}
               stepRightOrBack={stepRightOrBack}
             />,
             <StepTwoContainer
               key={2}
               step={step}
               skyLightData={skyLightData}
-              nextStepSlider={()=>nextStepSlider(45)}
-              dataSend={dataSend}
-              previousSlide={()=>previousSlide(40)}
+              nextStepSlider={() => nextStepSlider(45)}
+              roofData={roofData}
+              previousSlide={() => previousSlide(40)}
             />,
-            <SendForm key={3} dataSend={dataSend} />,
+            <SendForm key={3} roofData={roofData} />,
           ]}
           ref={containerRef}
         />

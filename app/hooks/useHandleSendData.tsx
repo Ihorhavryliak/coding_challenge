@@ -1,22 +1,21 @@
-import React from 'react';
 import { valuesFormType } from './useForm';
-import { DataSendType } from './useProgress';
+import { RoofDataType } from './useProgress';
 type UseSendDataFetchType = {
   valuesForm: valuesFormType;
-  dataSend: DataSendType;
+  roofData: RoofDataType;
   setIsSuccessSendData: (val: boolean) => void;
 };
 const useHandleSendData = ({
   valuesForm,
-  dataSend,
+  roofData,
   setIsSuccessSendData,
 }: UseSendDataFetchType) => {
   const handleSendData = async () => {
     try {
       const url = 'https://65590262e93ca47020a9fce8.mockapi.io/insert';
       const data = {
-        dachform: dataSend.roofShape,
-        dachfenster: dataSend.skyLight,
+        dachform: roofData.roofShape,
+        dachfenster: roofData.skyLight,
         anrede: valuesForm.gender.value,
         name: valuesForm.name.value,
         telefonnummer: valuesForm.phone.value,

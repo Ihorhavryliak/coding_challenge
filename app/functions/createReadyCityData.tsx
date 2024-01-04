@@ -1,4 +1,3 @@
-import React from 'react';
 import { ZipCodeJsonType } from './validation';
 import zipCodeJson from '../json/zip-codes-germany-cleaned-up.json.json';
 

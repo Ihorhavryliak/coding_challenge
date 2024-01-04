@@ -2,10 +2,12 @@ import { useCallback } from 'react';
 import { FieldType, valuesFormType } from './useForm';
 import createReadyCityData from '../functions/createReadyCityData';
 import validation from '../functions/validation';
+
 type ReadyCityType = {
   id: string;
   value: string;
 }[];
+
 type UseHandleOnChangeFormType = {
   setValueForm: (prev: (prevValues: valuesFormType) => valuesFormType) => void;
   setOptionsCity: (val: ReadyCityType) => void;

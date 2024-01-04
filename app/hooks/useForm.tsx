@@ -4,7 +4,7 @@ import useHandleOnBlurForm from './useHandleOnBlurForm';
 import useHandleOnChangeForm from './useHandleOnChangeForm';
 import useButtonDisabled from './useButtonDisabled';
 import useHandleSendData from './useHandleSendData';
-import { DataSendType } from './useProgress';
+import { RoofDataType } from './useProgress';
 
 export type FieldType =
   | 'gender'
@@ -22,10 +22,12 @@ export type valuesFormType = {
     error: string;
   };
 };
+
 type useFormType = {
-  dataSend: DataSendType;
+  roofData: RoofDataType;
 };
-const useForm = ({ dataSend }: useFormType) => {
+
+const useForm = ({ roofData }: useFormType) => {
   const [isSuccessSendData, setIsSuccessSendData] = useState(false);
   const [valuesForm, setValueForm] = useState({
     gender: { value: '', error: '' },
@@ -39,7 +41,7 @@ const useForm = ({ dataSend }: useFormType) => {
 
   const handleSendData = useHandleSendData({
     valuesForm,
-    dataSend,
+    roofData,
     setIsSuccessSendData,
   });
 

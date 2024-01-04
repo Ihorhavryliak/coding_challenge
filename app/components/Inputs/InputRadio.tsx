@@ -1,8 +1,8 @@
 type InputRadioType = {
   onChange: (val: string) => void;
-  name: string
-  value: string
-  checked: boolean
+  name: string;
+  value: string;
+  checked: boolean;
 };
 
 const InputRadio = ({ onChange, name, value, checked }: InputRadioType) => {
@@ -18,7 +18,7 @@ const InputRadio = ({ onChange, name, value, checked }: InputRadioType) => {
         />
       </div>
       <div className='flex items-center font-scandia text-lg leading-5 text-custom-gray-300'>
-         {name}
+        {name}
       </div>
     </div>
   );

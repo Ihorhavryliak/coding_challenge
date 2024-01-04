@@ -3,28 +3,28 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Scandia";
-  src: url("../public/assets/fonts/Scandia-Regular.woff2");
+  font-family: 'Scandia';
+  src: url('../public/assets/fonts/Scandia-Regular.woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Scandia";
-  src: url("../public/assets/fonts/Scandia-Medium.woff2");
+  font-family: 'Scandia';
+  src: url('../public/assets/fonts/Scandia-Medium.woff2');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Scandia";
-  src: url("../public/assets/fonts/Scandia-Medium.woff2");
+  font-family: 'Scandia';
+  src: url('../public/assets/fonts/Scandia-Medium.woff2');
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
-  font-family: "Scandia";
-  src: url("../public/assets/fonts/Scandia-Bold.woff");
+  font-family: 'Scandia';
+  src: url('../public/assets/fonts/Scandia-Bold.woff');
   font-weight: 700;
   font-style: normal;
 }
@@ -32,8 +32,3 @@
 * {
   box-sizing: border-box;
 }
-
-
-
-
-

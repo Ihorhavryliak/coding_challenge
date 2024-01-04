@@ -2,34 +2,25 @@ import useForm from '@/app/hooks/useForm';
 import InputRadio from '../Inputs/InputRadio';
 import InputGeneral from '../Inputs/InputGeneral';
 import SelectGeneral from '../Select/SelectGeneral';
-import ButtonGeneral from '../Buttons/ButtonGeneral';
-import { DataSendType } from '@/app/hooks/useProgress';
+import { RoofDataType } from '@/app/hooks/useProgress';
+import FormTopText from './FormTopText';
+import ButtonForm from './ButtonForm';
+import CongratulationText from './CongratulationText';
+
 type SendFormType = {
-  dataSend: DataSendType;
+  roofData: RoofDataType;
 };
-const SendForm = ({ dataSend }: SendFormType) => {
+
+const SendForm = ({ roofData }: SendFormType) => {
   const { formData, isButtonSendDisabled, handleSendData, isSuccessSendData } =
     useForm({
-      dataSend,
+      roofData,
     });
+    
   return (
     <div>
-      <div className='flex flex-col items-center bg-custom-blue-200 transition-[background-color] duration-500 ease-in-out'>
-        <p className='pt-5 font-scandia text-sm font-medium text-white'>
-          Eine Solaranlage spart Ihnen ca.
-        </p>
-        <p className='pb-[38px] pt-2.5 font-scandia text-xl font-medium text-white'>
-          25.000 - 30.000 € Stromkosten
-        </p>
-      </div>
-      <div className='mt-4 flex w-full justify-center'>
-        <p className='w-[666px]  px-2.5 text-center font-scandia text-lg font-medium leading-6 text-custom-blue-200  md:px-0  lg:px-0 xl:px-0 2xl:px-0 '>
-          Gratulation, das Angebot ist in Ihrer Region noch verfügbar! Wir
-          senden Ihnen gerne kostenlose Informationen zu.
-        </p>
-      </div>
+      <FormTopText />
 
-      {/* input radio */}
       <div className='flex justify-center '>
         <div className='w-full max-w-[430px] px-2.5 py-2.5 md:px-0 lg:px-0 xl:px-0 2xl:px-0'>
           {formData.map((item) => {
@@ -132,21 +123,11 @@ const SendForm = ({ dataSend }: SendFormType) => {
             );
           })}
 
-          <div className='mt-[13.85px]'>
-            <ButtonGeneral
-              disabled={isButtonSendDisabled}
-              title='Ja, das ist mein Hausdach.'
-              onClick={handleSendData}
-            />
-          </div>
-          {isSuccessSendData && (
-            <div className='text-center'>
-              <h1 className='text-center text-lg text-green-900'>
-                Congratulation!!
-              </h1>
-              <p>Data sent!</p>
-            </div>
-          )}
+          <ButtonForm
+            handleSendData={handleSendData}
+            isButtonSendDisabled={isButtonSendDisabled}
+          />
+          {isSuccessSendData && <CongratulationText />}
         </div>
       </div>
     </div>

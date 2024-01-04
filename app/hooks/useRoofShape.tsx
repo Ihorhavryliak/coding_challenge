@@ -3,11 +3,11 @@ import GableRoof from '../components/Icons/GableRoof';
 import FlatRoof from '../components/Icons/FlatRoof';
 import PentRoof from '../components/Icons/PentRoof';
 import Other from '../components/Icons/Other';
-import { DataSendType } from './useProgress';
+import { RoofDataType } from './useProgress';
 
 type UseRoofShapeType = {
   nextSlide: (name: string, field: string, stepNumber: number) => void;
-  dataSend: DataSendType;
+  roofData: RoofDataType;
 };
 
 export type RoofShapeType = {
@@ -19,7 +19,7 @@ export type RoofShapeType = {
 
 const useRoofShape = ({
   nextSlide,
-  dataSend,
+  roofData,
 }: UseRoofShapeType): RoofShapeType => {
   return useMemo(() => {
     const stepNumber = 40;
@@ -28,28 +28,28 @@ const useRoofShape = ({
         onClick: () => nextSlide('Satteldach', 'roofShape', stepNumber),
         name: 'Satteldach',
         icon: <GableRoof />,
-        isActive: dataSend.roofShape === 'Satteldach',
+        isActive: roofData.roofShape === 'Satteldach',
       },
       {
         onClick: () => nextSlide('Flachdach', 'roofShape', stepNumber),
         name: 'Flachdach',
         icon: <FlatRoof />,
-        isActive: dataSend.roofShape === 'Flachdach',
+        isActive: roofData.roofShape === 'Flachdach',
       },
       {
         onClick: () => nextSlide('Pultdach', 'roofShape', stepNumber),
         name: 'Pultdach',
         icon: <PentRoof />,
-        isActive: dataSend.roofShape === 'Pultdach',
+        isActive: roofData.roofShape === 'Pultdach',
       },
       {
         onClick: () => nextSlide('Anderes', 'roofShape', stepNumber),
         name: 'Anderes',
         icon: <Other />,
-        isActive: dataSend.roofShape === 'Anderes',
+        isActive: roofData.roofShape === 'Anderes',
       },
     ];
-  }, [dataSend.roofShape, nextSlide]);
+  }, [roofData.roofShape, nextSlide]);
 };
 
 export default useRoofShape;
