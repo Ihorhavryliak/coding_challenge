@@ -1,5 +1,5 @@
 import React from 'react';
-import Information from '../Icons/information';
+import InformationIcon from '../Icons/InformationIcon';
 
 const FormTopText = () => {
   return (
@@ -11,7 +11,7 @@ const FormTopText = () => {
         <div className='flex gap-[13.26px] pb-[38px] pt-2.5 font-scandia text-xl font-medium text-white'>
           25.000 - 30.000 € Stromkosten
           <span className='relative top-[-3px]'>
-            <Information />
+            <InformationIcon />
           </span>
         </div>
       </div>

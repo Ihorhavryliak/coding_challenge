@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Information = () => {
+const InformationIcon = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -46,4 +46,4 @@ const Information = () => {
   );
 };
 
-export default Information;
+export default InformationIcon;
