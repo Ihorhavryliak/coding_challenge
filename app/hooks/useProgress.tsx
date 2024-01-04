@@ -6,7 +6,6 @@ export type DataSendType = {
 
 export const useProgress = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-
   const [numberPercentLoad, setNumberPercentLoad] = useState(10);
   const [step, setStep] = useState(0);
   const [stepRightOrBack, setStepRightOrBack] = useState('');

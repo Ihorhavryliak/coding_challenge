@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <main className='m-auto w-full max-w-[930px]'>
-      <div className='relative overflow-hidden'>
+      <div className='relative overflow-hidden bg-custom-gray-200'>
         <div
           className={`${
             step === 2
@@ -54,7 +54,7 @@ export default function Home() {
               dataSend={dataSend}
               previousSlide={()=>previousSlide(40)}
             />,
-            <SendForm key={3} />,
+            <SendForm key={3} dataSend={dataSend} />,
           ]}
           ref={containerRef}
         />

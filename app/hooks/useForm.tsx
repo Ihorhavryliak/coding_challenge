@@ -1,8 +1,10 @@
-import { useCallback, useMemo, useState } from 'react';
-import validation, { ZipCodeJsonType } from '../functions/validation';
-
+import { useMemo, useState } from 'react';
 import { SelectOptionType } from '../components/Select/SelectGeneral';
-import createReadyCityData from '../functions/createReadyCityData';
+import useHandleOnBlurForm from './useHandleOnBlurForm';
+import useHandleOnChangeForm from './useHandleOnChangeForm';
+import useButtonDisabled from './useButtonDisabled';
+import useHandleSendData from './useHandleSendData';
+import { DataSendType } from './useProgress';
 
 export type FieldType =
   | 'gender'
@@ -11,18 +13,20 @@ export type FieldType =
   | 'city'
   | 'street'
   | 'name'
-  | 'house';
+  | 'house'
+  | string;
 
-type valuesFormType = {
-  [key: string]: {
+export type valuesFormType = {
+  [key in FieldType]: {
     value: string;
     error: string;
   };
 };
-
-
-
-const useForm = () => {
+type useFormType = {
+  dataSend: DataSendType;
+};
+const useForm = ({ dataSend }: useFormType) => {
+  const [isSuccessSendData, setIsSuccessSendData] = useState(false);
   const [valuesForm, setValueForm] = useState({
     gender: { value: '', error: '' },
     name: { value: '', error: '' },
@@ -33,74 +37,22 @@ const useForm = () => {
     house: { value: '', error: '' },
   } as valuesFormType);
 
+  const handleSendData = useHandleSendData({
+    valuesForm,
+    dataSend,
+    setIsSuccessSendData,
+  });
+
   const [optionsCity, setOptionsCity] = useState([] as SelectOptionType[]);
 
-  const handleOnBlur = useCallback((val: string, field: FieldType) => {
-    const error = validation(val, field);
-    if (!!error?.length) {
-      return setValueForm((prev) => {
-        return { ...prev, [field]: { ...prev[field], value: val, error } };
-      });
-    } else {
-      setValueForm((prev) => {
-        return { ...prev, [field]: { ...prev[field], value: val, error: '' } };
-      });
-    }
-  }, []);
+  const handleOnBlur = useHandleOnBlurForm({ setValueForm });
 
-  const handleOnChange = useCallback((val: string, field: FieldType) => {
-    if (field === 'postalCode' && val.length > 5) {
-      return;
-    }
+  const handleOnChange = useHandleOnChangeForm({
+    setOptionsCity,
+    setValueForm,
+  });
 
-    const error = validation(val, field);
-
-    if (field === 'postalCode' && val.length === 5 && !error?.length) {
-      const readyCity = createReadyCityData(val);
-      readyCity.length === 1
-        ? setValueForm((prev) => {
-            return {
-              ...prev,
-              city: {
-                ...prev.city,
-                value: readyCity[0].value,
-                error: '',
-              },
-            };
-          })
-        : setOptionsCity(readyCity);
-    } else if (field === 'postalCode') {
-      setValueForm((prev) => {
-        return {
-          ...prev,
-          city: { ...prev.city, value: '', error: '' },
-          street: { ...prev.street, value: '', error: '' },
-        };
-      });
-      setOptionsCity([]);
-    }
-
-    if (!!error?.length) {
-      return setValueForm((prev) => {
-        return { ...prev, [field]: { ...prev[field], value: val, error } };
-      });
-    } else {
-      setValueForm((prev) => {
-        return { ...prev, [field]: { ...prev[field], value: val, error: '' } };
-      });
-    }
-  }, []);
-
-  const isButtonSendDisabled = useMemo(() => {
-    let isButtonDisabled = false;
-    for (const key in valuesForm) {
-      if (!!valuesForm[key].error.length || !valuesForm[key].value) {
-        isButtonDisabled = true;
-        break;
-      }
-    }
-    return isButtonDisabled;
-  }, [valuesForm]);
+  const isButtonSendDisabled = useButtonDisabled({ valuesForm });
 
   const formData = useMemo(() => {
     return [
@@ -212,26 +164,26 @@ const useForm = () => {
       },
     ];
   }, [
-    handleOnBlur,
-    handleOnChange,
-    optionsCity,
-    valuesForm.gender.error,
     valuesForm.gender.value,
-    valuesForm.house.error,
-    valuesForm.house.value,
-    valuesForm.city.error,
-    valuesForm.city.value,
-    valuesForm.name.error,
+    valuesForm.gender.error,
     valuesForm.name.value,
-    valuesForm.phone.error,
+    valuesForm.name.error,
     valuesForm.phone.value,
-    valuesForm.postalCode.error,
+    valuesForm.phone.error,
     valuesForm.postalCode.value,
-    valuesForm.street.error,
+    valuesForm.postalCode.error,
+    valuesForm.city.value,
+    valuesForm.city.error,
     valuesForm.street.value,
+    valuesForm.street.error,
+    valuesForm.house.value,
+    valuesForm.house.error,
+    optionsCity,
+    handleOnChange,
+    handleOnBlur,
   ]);
 
-  return { formData, isButtonSendDisabled };
+  return { formData, isButtonSendDisabled, handleSendData, isSuccessSendData };
 };
 
 export default useForm;

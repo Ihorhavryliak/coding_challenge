@@ -10,10 +10,10 @@ const Right = () => {
       aria-hidden='true'
       fill='none'
       focusable='false'
-      stroke-linecap='round'
-      stroke-linejoin='round'
+      strokeLinecap='round'
+      strokeLinejoin='round'
       stroke='currentColor'
-      stroke-width='1.5'
+      strokeWidth='1.5'
     >
       <title id='arrowRight'>arrowRight</title>
       <g>

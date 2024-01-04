@@ -1,7 +1,4 @@
 import React, { useMemo } from 'react';
-import GableRoof from '../components/Icons/GableRoof';
-import FlatRoof from '../components/Icons/FlatRoof';
-import PentRoof from '../components/Icons/PentRoof';
 import Other from '../components/Icons/Other';
 import HouseFirsVariant from '../components/Icons/HouseFirsVariant';
 import House from '../components/Icons/House';
@@ -24,21 +21,22 @@ const useSkyLight = ({
   dataSend,
 }: UseRoofShapeType): RoofShapeType => {
   return useMemo(() => {
+    const stepNumber = 45;
     return [
       {
-        onClick: () => nextSlide('HouseFirsVariant', 'skyLight', 45),
+        onClick: () => nextSlide('HouseFirsVariant', 'skyLight', stepNumber),
         name: 'Ja',
         icon: <HouseFirsVariant />,
         isActive: dataSend.skyLight === 'HouseFirsVariant',
       },
       {
-        onClick: () => nextSlide('Nein', 'skyLight', 45),
+        onClick: () => nextSlide('Nein', 'skyLight', stepNumber),
         name: 'Nein',
         icon: <House />,
         isActive: dataSend.skyLight === 'Nein',
       },
       {
-        onClick: () => nextSlide('Weiß nicht', 'skyLight', 45),
+        onClick: () => nextSlide('Weiß nicht', 'skyLight', stepNumber),
         name: 'Weiß nicht',
         icon: <Other />,
         isActive: dataSend.skyLight === 'Weiß nicht',

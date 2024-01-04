@@ -3,9 +3,15 @@ import InputRadio from '../Inputs/InputRadio';
 import InputGeneral from '../Inputs/InputGeneral';
 import SelectGeneral from '../Select/SelectGeneral';
 import ButtonGeneral from '../Buttons/ButtonGeneral';
-
-const SendForm = () => {
-  const { formData, isButtonSendDisabled } = useForm();
+import { DataSendType } from '@/app/hooks/useProgress';
+type SendFormType = {
+  dataSend: DataSendType;
+};
+const SendForm = ({ dataSend }: SendFormType) => {
+  const { formData, isButtonSendDisabled, handleSendData, isSuccessSendData } =
+    useForm({
+      dataSend,
+    });
   return (
     <div>
       <div className='flex flex-col items-center bg-custom-blue-200 transition-[background-color] duration-500 ease-in-out'>
@@ -130,9 +136,17 @@ const SendForm = () => {
             <ButtonGeneral
               disabled={isButtonSendDisabled}
               title='Ja, das ist mein Hausdach.'
-              onClick={() => {}}
+              onClick={handleSendData}
             />
           </div>
+          {isSuccessSendData && (
+            <div className='text-center'>
+              <h1 className='text-center text-lg text-green-900'>
+                Congratulation!!
+              </h1>
+              <p>Data sent!</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

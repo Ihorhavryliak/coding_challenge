@@ -22,27 +22,28 @@ const useRoofShape = ({
   dataSend,
 }: UseRoofShapeType): RoofShapeType => {
   return useMemo(() => {
+    const stepNumber = 40;
     return [
       {
-        onClick: () => nextSlide('Satteldach', 'roofShape', 40),
+        onClick: () => nextSlide('Satteldach', 'roofShape', stepNumber),
         name: 'Satteldach',
         icon: <GableRoof />,
         isActive: dataSend.roofShape === 'Satteldach',
       },
       {
-        onClick: () => nextSlide('Flachdach', 'roofShape', 40),
+        onClick: () => nextSlide('Flachdach', 'roofShape', stepNumber),
         name: 'Flachdach',
         icon: <FlatRoof />,
         isActive: dataSend.roofShape === 'Flachdach',
       },
       {
-        onClick: () => nextSlide('Pultdach', 'roofShape', 40),
+        onClick: () => nextSlide('Pultdach', 'roofShape', stepNumber),
         name: 'Pultdach',
         icon: <PentRoof />,
         isActive: dataSend.roofShape === 'Pultdach',
       },
       {
-        onClick: () => nextSlide('Anderes', 'roofShape', 40),
+        onClick: () => nextSlide('Anderes', 'roofShape', stepNumber),
         name: 'Anderes',
         icon: <Other />,
         isActive: dataSend.roofShape === 'Anderes',

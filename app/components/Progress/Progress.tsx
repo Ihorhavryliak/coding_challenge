@@ -12,10 +12,13 @@ const Progress = ({ numberPercentLoad, step }: ProgressType) => {
       <div className='bg-stroke relative h-1 w-full rounded-[8px] bg-custom-green-100'>
         <div
           className={classNames(
-            step === 2 && 'text-white',
-            'relative bottom-full top-[-30px] -ml-8 h-5 font-scandia text-xs font-medium leading-5 text-custom-gray-100 transition-all duration-[700ms] ease-out',
+            step === 2 &&
+              'ml-[-110px] w-full text-white md:ml-[-85px] lg:ml-[-85px] xl:ml-[-85px] 2xl:ml-[-85px]',
+            'absolute bottom-full top-[-30px] -ml-8 h-5 font-scandia text-xs font-medium leading-5 text-custom-gray-100 transition-all duration-[700ms] ease-out',
           )}
-          style={{ left: `${numberPercentLoad}%` }}
+          style={{
+            left: `${step === 2 ? numberPercentLoad : numberPercentLoad}%`,
+          }}
         >
           {numberPercentLoad}{' '}
           {step === 2 ? '% - Fast geschafft!' : '% geschafft'}
