@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 const useGetWindowWidth = () => {
+  const windowWidth = useRef(window.innerWidth) as {current: number};
   const [width, setWidth] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth : 930,
+    typeof window !== 'undefined' ? window.innerWidth : +windowWidth.current,
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };

@@ -1,5 +1,5 @@
 import React from 'react';
-import TypeRoofContainer from '../TypeRoof/TypeRoofContainer';
+import TypeRoofCartContainer from '../TypeRoofCart/TypeRoofCartContainer';
 import { RoofShapeType } from '@/app/hooks/useRoofShape';
 import ButtonBackIcon from '../Buttons/ButtonBackIcon';
 import BlueButton from '../Buttons/BlueButtonIcon';
@@ -42,7 +42,7 @@ const StepContainer = ({
       <div className='px-2.5 lg:px-10 xl:px-10 2xl:px-10 flex flex-col justify-center gap-5 md:flex-row lg:flex-row xl:flex-row 2xl:flex-row'>
         {roofShapesData.map((roofShape, index) => {
           return (
-            <TypeRoofContainer
+            <TypeRoofCartContainer
               key={index}
               onClick={roofShape.onClick}
               name={roofShape.name}

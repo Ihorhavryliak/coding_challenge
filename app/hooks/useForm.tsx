@@ -54,7 +54,7 @@ const useForm = () => {
     }
 
     const error = validation(val, field);
-    debugger
+
     if (field === 'postalCode' && val.length === 5 && !error?.length) {
       const readyCity = createReadyCityData(val);
       readyCity.length === 1

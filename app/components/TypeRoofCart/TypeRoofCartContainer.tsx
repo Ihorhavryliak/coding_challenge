@@ -1,14 +1,19 @@
 import classNames from '@/app/utils/classNames';
 import { memo } from 'react';
 
-type TypeRoofType = {
+type TypeRoofCartContainerType = {
   icon: JSX.Element;
   name: string;
   onClick?: () => void;
   isActive: boolean;
 };
 
-const TypeRoofItem = ({ icon, name, onClick, isActive }: TypeRoofType) => {
+const TypeRoofCartContainer = ({
+  icon,
+  name,
+  onClick,
+  isActive,
+}: TypeRoofCartContainerType) => {
   return (
     <div
       className={classNames(
@@ -65,4 +70,4 @@ const TypeRoofItem = ({ icon, name, onClick, isActive }: TypeRoofType) => {
   );
 };
 
-export default memo(TypeRoofItem);
+export default memo(TypeRoofCartContainer);

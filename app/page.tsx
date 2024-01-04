@@ -29,7 +29,7 @@ export default function Home() {
         <div
           className={`${
             step === 2
-              ? 'bg-custom-blue-200 pb-4 pr-10 ps-14 pt-11 transition-[background-color] duration-500 ease-in-out'
+              ? 'bg-custom-blue-200 pb-4 pt-11 transition-[background-color] duration-500 ease-in-out'
               : 'relative overflow-hidden py-10 pb-4 pt-11'
           } `}
         >

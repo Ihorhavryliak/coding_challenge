@@ -17,15 +17,15 @@ const SendForm = () => {
         </p>
       </div>
       <div className='mt-4 flex w-full justify-center'>
-        <p className='w-[666px] text-center font-scandia text-lg font-medium leading-6 text-custom-blue-200 '>
+        <p className='w-[666px]  px-2.5 text-center font-scandia text-lg font-medium leading-6 text-custom-blue-200  md:px-0  lg:px-0 xl:px-0 2xl:px-0 '>
           Gratulation, das Angebot ist in Ihrer Region noch verfügbar! Wir
           senden Ihnen gerne kostenlose Informationen zu.
         </p>
       </div>
 
       {/* input radio */}
-      <div className='flex justify-center'>
-        <div className='w-[430px] py-2.5'>
+      <div className='flex justify-center '>
+        <div className='w-full max-w-[430px] px-2.5 py-2.5 md:px-0 lg:px-0 xl:px-0 2xl:px-0'>
           {formData.map((item) => {
             if (item.type === 'radio') {
               return (
@@ -55,7 +55,10 @@ const SendForm = () => {
             }
             if (item.type === 'double') {
               return (
-                <div key={item.id} className='flex gap-2.5'>
+                <div
+                  key={item.id}
+                  className='flex flex-col gap-2.5 md:flex-row lg:flex-row xl:flex-row 2xl:flex-row'
+                >
                   {item?.inputs?.map(
                     ({
                       error,
