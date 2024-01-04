@@ -24,46 +24,40 @@ export default function Home() {
   const skyLightData = useSkyLight({ nextSlide, dataSend });
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between '>
-      <div className='z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex'>
-        <div className='w-[930px]'>
-          <div>
-            <div>
-              <div
-                className={`${
-                  step === 2
-                    ? 'bg-custom-blue-200 pb-4 pr-10 ps-14 pt-11 transition-[background-color] duration-500 ease-in-out'
-                    : 'py-10 pb-4 pt-11'
-                } `}
-              >
-                <Progress numberPercentLoad={numberPercentLoad} />
-              </div>
-
-              <SliderGeneral
-                slides={[
-                  <StepOneContainer
-                    key={1}
-                    step={step}
-                    roofShapesData={roofShapesData}
-                    nextStepSlider={nextStepSlider}
-                    dataSend={dataSend}
-                    stepRightOrBack={stepRightOrBack}
-                  />,
-                  <StepTwoContainer
-                    key={2}
-                    step={step}
-                    skyLightData={skyLightData}
-                    nextStepSlider={nextStepSlider}
-                    dataSend={dataSend}
-                    previousSlide={previousSlide}
-                  />,
-                  <SendForm key={3} />,
-                ]}
-                ref={containerRef}
-              />
-            </div>
-          </div>
+    <main className='m-auto w-full max-w-[930px]'>
+      <div className='relative overflow-hidden'>
+        <div
+          className={`${
+            step === 2
+              ? 'bg-custom-blue-200 pb-4 pr-10 ps-14 pt-11 transition-[background-color] duration-500 ease-in-out'
+              : 'relative overflow-hidden py-10 pb-4 pt-11'
+          } `}
+        >
+          <Progress numberPercentLoad={numberPercentLoad} />
         </div>
+
+        <SliderGeneral
+          slides={[
+            <StepOneContainer
+              key={1}
+              step={step}
+              roofShapesData={roofShapesData}
+              nextStepSlider={nextStepSlider}
+              dataSend={dataSend}
+              stepRightOrBack={stepRightOrBack}
+            />,
+            <StepTwoContainer
+              key={2}
+              step={step}
+              skyLightData={skyLightData}
+              nextStepSlider={nextStepSlider}
+              dataSend={dataSend}
+              previousSlide={previousSlide}
+            />,
+            <SendForm key={3} />,
+          ]}
+          ref={containerRef}
+        />
       </div>
     </main>
   );
