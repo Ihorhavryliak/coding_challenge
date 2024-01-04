@@ -6,7 +6,7 @@ import Other from '../components/Icons/Other';
 import { DataSendType } from './useProgress';
 
 type UseRoofShapeType = {
-  nextSlide: (name: string, field: string) => void;
+  nextSlide: (name: string, field: string, stepNumber: number) => void;
   dataSend: DataSendType;
 };
 
@@ -24,25 +24,25 @@ const useRoofShape = ({
   return useMemo(() => {
     return [
       {
-        onClick: () => nextSlide('Satteldach', 'roofShape'),
+        onClick: () => nextSlide('Satteldach', 'roofShape', 40),
         name: 'Satteldach',
         icon: <GableRoof />,
         isActive: dataSend.roofShape === 'Satteldach',
       },
       {
-        onClick: () => nextSlide('Flachdach', 'roofShape'),
+        onClick: () => nextSlide('Flachdach', 'roofShape', 40),
         name: 'Flachdach',
         icon: <FlatRoof />,
         isActive: dataSend.roofShape === 'Flachdach',
       },
       {
-        onClick: () => nextSlide('Pultdach', 'roofShape'),
+        onClick: () => nextSlide('Pultdach', 'roofShape', 40),
         name: 'Pultdach',
         icon: <PentRoof />,
         isActive: dataSend.roofShape === 'Pultdach',
       },
       {
-        onClick: () => nextSlide('Anderes', 'roofShape'),
+        onClick: () => nextSlide('Anderes', 'roofShape', 40),
         name: 'Anderes',
         icon: <Other />,
         isActive: dataSend.roofShape === 'Anderes',

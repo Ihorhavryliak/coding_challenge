@@ -10,6 +10,7 @@ const SliderGeneral = (
   ref: LegacyRef<HTMLDivElement> | undefined,
 ) => {
   const width = useGetWindowWidth();
+
   return (
     <div
       ref={ref}

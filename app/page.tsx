@@ -33,7 +33,7 @@ export default function Home() {
               : 'relative overflow-hidden py-10 pb-4 pt-11'
           } `}
         >
-          <Progress numberPercentLoad={numberPercentLoad} />
+          <Progress step={step} numberPercentLoad={numberPercentLoad} />
         </div>
 
         <SliderGeneral
@@ -42,7 +42,7 @@ export default function Home() {
               key={1}
               step={step}
               roofShapesData={roofShapesData}
-              nextStepSlider={nextStepSlider}
+              nextStepSlider={()=>nextStepSlider(40)}
               dataSend={dataSend}
               stepRightOrBack={stepRightOrBack}
             />,
@@ -50,9 +50,9 @@ export default function Home() {
               key={2}
               step={step}
               skyLightData={skyLightData}
-              nextStepSlider={nextStepSlider}
+              nextStepSlider={()=>nextStepSlider(45)}
               dataSend={dataSend}
-              previousSlide={previousSlide}
+              previousSlide={()=>previousSlide(40)}
             />,
             <SendForm key={3} />,
           ]}

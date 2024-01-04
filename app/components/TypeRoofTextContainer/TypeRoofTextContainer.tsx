@@ -2,6 +2,7 @@ import useGetWindowWidth from "@/app/hooks/useGetWindowWidth";
 
 const TypeRoofTextContainer = () => {
   const width = useGetWindowWidth();
+
   return (
     <p
       className={

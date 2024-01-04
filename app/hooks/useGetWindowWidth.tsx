@@ -1,12 +1,18 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useGetWindowWidth = () => {
-  const windowWidth = useRef(window.innerWidth) as {current: number};
-  const [width, setWidth] = useState(() =>
-    typeof window !== 'undefined' ? window.innerWidth : +windowWidth.current,
-  );
+  const isSSR = typeof window === 'undefined'; // Check if running on the server
+  const windowWidth = useRef(isSSR ? 0 : window.innerWidth) as {
+    current: number;
+  };
 
-  useLayoutEffect(() => {
+  const [width, setWidth] = useState(930);
+
+  useEffect(() => {
+    setWidth(+windowWidth.current);
+  }, []);
+
+  useEffect(() => {
     const handleResize = () => {
       setWidth(window.innerWidth);
     };

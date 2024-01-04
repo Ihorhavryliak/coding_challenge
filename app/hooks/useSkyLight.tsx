@@ -8,7 +8,7 @@ import House from '../components/Icons/House';
 import { DataSendType } from './useProgress';
 
 type UseRoofShapeType = {
-  nextSlide: (name: string, field: string) => void;
+  nextSlide: (name: string, field: string, stepNumber: number) => void;
   dataSend: DataSendType;
 };
 
@@ -26,19 +26,19 @@ const useSkyLight = ({
   return useMemo(() => {
     return [
       {
-        onClick: () => nextSlide('HouseFirsVariant', 'skyLight'),
+        onClick: () => nextSlide('HouseFirsVariant', 'skyLight', 45),
         name: 'Ja',
         icon: <HouseFirsVariant />,
         isActive: dataSend.skyLight === 'HouseFirsVariant',
       },
       {
-        onClick: () => nextSlide('Nein', 'skyLight'),
+        onClick: () => nextSlide('Nein', 'skyLight', 45),
         name: 'Nein',
         icon: <House />,
         isActive: dataSend.skyLight === 'Nein',
       },
       {
-        onClick: () => nextSlide('Weiß nicht', 'skyLight'),
+        onClick: () => nextSlide('Weiß nicht', 'skyLight', 45),
         name: 'Weiß nicht',
         icon: <Other />,
         isActive: dataSend.skyLight === 'Weiß nicht',
