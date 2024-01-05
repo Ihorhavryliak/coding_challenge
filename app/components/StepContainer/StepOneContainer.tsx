@@ -1,5 +1,5 @@
 import { RoofShapeType } from '@/app/hooks/useRoofShape';
-import TypeRoofTextContainer from '../TypeRoofTextContainer/TypeRoofTextContainer';
+import StepTextContainer from './StepTextContainer';
 import StepContainer from './StepContainer';
 import { RoofDataType } from '@/app/hooks/useProgress';
 
@@ -19,17 +19,14 @@ const StepOneContainer = ({
   stepRightOrBack,
 }: StepOneContainerType) => {
   return (
-    <>
-      <TypeRoofTextContainer />
-      <StepContainer
-        title='Kostenloser Solarstrom-Check in einer Minute.'
-        isCurrentStep={step === 0}
-        key={1}
-        roofShapesData={roofShapesData}
-        nextStepSlider={nextStepSlider}
-        isButtonNext={!!roofData.roofShape.length && stepRightOrBack === 'back'}
-      />
-    </>
+    <StepContainer
+      title='Kostenloser Solarstrom-Check in einer Minute.'
+      isCurrentStep={step === 0}
+      step={step}
+      roofShapesData={roofShapesData}
+      nextStepSlider={nextStepSlider}
+      isButtonNext={!!roofData.roofShape.length && stepRightOrBack === 'back'}
+    />
   );
 };
 

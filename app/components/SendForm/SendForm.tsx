@@ -16,13 +16,12 @@ const SendForm = ({ roofData }: SendFormType) => {
     useForm({
       roofData,
     });
-    
-  return (
-    <div>
-      <FormTopText />
 
+  return (
+    <div className='w-full'>
+      <FormTopText />
       <div className='flex justify-center '>
-        <div className='w-full max-w-[430px] px-2.5 py-2.5 md:px-0 lg:px-0 xl:px-0 2xl:px-0'>
+        <div className='w-full max-w-[430px] px-2.5 pb-4 pt-2.5 md:px-0 lg:px-0 xl:px-0 2xl:px-0'>
           {formData.map((item) => {
             if (item.type === 'radio') {
               return (

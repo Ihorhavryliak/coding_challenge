@@ -13,23 +13,23 @@ const InformationIcon = () => {
         <path
           d='M8.12988 13.175C11.2365 13.175 13.7549 10.6566 13.7549 7.54999C13.7549 4.44339 11.2365 1.92499 8.12988 1.92499C5.02328 1.92499 2.50488 4.44339 2.50488 7.54999C2.50488 10.6566 5.02328 13.175 8.12988 13.175Z'
           stroke='white'
-          stroke-width='0.9375'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='0.9375'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
         <path
           d='M8.12988 5.04999H8.13613'
           stroke='white'
-          stroke-width='0.9375'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='0.9375'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
         <path
           d='M7.50488 7.54999H8.12988V10.05H8.75488'
           stroke='white'
-          stroke-width='0.9375'
-          stroke-linecap='round'
-          stroke-linejoin='round'
+          strokeWidth='0.9375'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
       </g>
       <defs>

@@ -16,11 +16,10 @@ const CartContainer = ({
   onClick,
   isActive,
 }: CartContainerType) => {
-  
   return (
     <div
       className={classNames(
-        isActive ? 'scale-95 transition-transform' : '',
+        isActive ? 'scale-95 transition-transform duration-300' : '',
         'group w-full',
       )}
     >

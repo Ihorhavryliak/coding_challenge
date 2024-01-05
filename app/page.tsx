@@ -1,13 +1,11 @@
 'use client';
-import SliderGeneral from './components/Slider/SliderGeneral';
 import './globals.css';
 import useRoofShape from './hooks/useRoofShape';
 import useSkyLight from './hooks/useSkyLight';
 import Progress from './components/Progress/Progress';
 import { useProgress } from './hooks/useProgress';
-import SendForm from './components/SendForm/SendForm';
-import StepOneContainer from './components/StepContainer/StepOneContainer';
-import StepTwoContainer from './components/StepContainer/StepTwoContainer';
+import classNames from './utils/classNames';
+import CarouselContainer from './components/Carousel/CarouselContainer';
 
 export default function Home() {
   const {
@@ -15,7 +13,6 @@ export default function Home() {
     nextSlide,
     roofData,
     numberPercentLoad,
-    containerRef,
     step,
     nextStepSlider,
     stepRightOrBack,
@@ -25,40 +22,24 @@ export default function Home() {
 
   return (
     <main className='m-auto w-full max-w-[930px]'>
-      <div className='relative overflow-hidden bg-custom-gray-200'>
-        <div
-          className={`${
-            step === 2
-              ? 'bg-custom-blue-200 pb-4 pt-11 transition-[background-color] duration-500 ease-in-out'
-              : 'relative overflow-hidden py-10 pb-4 pt-11'
-          } `}
-        >
-          <Progress step={step} numberPercentLoad={numberPercentLoad} />
-        </div>
-
-        <SliderGeneral
-          slides={[
-            <StepOneContainer
-              key={1}
-              step={step}
-              roofShapesData={roofShapesData}
-              nextStepSlider={() => nextStepSlider(40)}
-              roofData={roofData}
-              stepRightOrBack={stepRightOrBack}
-            />,
-            <StepTwoContainer
-              key={2}
-              step={step}
-              skyLightData={skyLightData}
-              nextStepSlider={() => nextStepSlider(45)}
-              roofData={roofData}
-              previousSlide={() => previousSlide(40)}
-            />,
-            <SendForm key={3} roofData={roofData} />,
-          ]}
-          ref={containerRef}
-        />
+      <div
+        className={classNames(
+          step === 2
+            ? 'relative overflow-hidden bg-custom-blue-200 pb-4 pt-11 transition-[background-color] duration-500 ease-in-out'
+            : 'relative overflow-hidden bg-custom-gray-200 py-10 pb-4 pt-11 ',
+        )}
+      >
+        <Progress step={step} numberPercentLoad={numberPercentLoad} />
       </div>
+      <CarouselContainer
+        nextStepSlider={nextStepSlider}
+        previousSlide={previousSlide}
+        roofData={roofData}
+        roofShapesData={roofShapesData}
+        skyLightData={skyLightData}
+        step={step}
+        stepRightOrBack={stepRightOrBack}
+      />
     </main>
   );
 }
