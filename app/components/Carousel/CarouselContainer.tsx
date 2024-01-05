@@ -35,7 +35,6 @@ const CarouselContainer = ({
       >
         <StepTextContainer />
       </div>
-
       <div
         className='whitespace-nowrap  transition-transform duration-[900ms]'
         style={{ transform: `translate(${step * 100 * -1}%)` }}

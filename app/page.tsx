@@ -26,7 +26,7 @@ export default function Home() {
         className={classNames(
           step === 2
             ? 'relative overflow-hidden bg-custom-blue-200 pb-4 pt-11 transition-[background-color] duration-500 ease-in-out'
-            : 'relative overflow-hidden bg-custom-gray-200 py-10 pb-4 pt-11 ',
+            : 'relative overflow-hidden bg-custom-gray-200 py-10 pb-4 pt-11',
         )}
       >
         <Progress step={step} numberPercentLoad={numberPercentLoad} />
